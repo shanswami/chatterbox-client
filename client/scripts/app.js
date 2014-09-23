@@ -3,9 +3,9 @@ var app = {
   init: function() {
     app.room = 'Default';
     var that = this;
-    // setInterval(function(){
-    //   that.fetch();
-    // }, 2000);
+    setInterval(function(){
+      that.fetch();
+    }, 2000);
   },
   send: function(message) {
 
@@ -76,15 +76,18 @@ var app = {
   }
 
 };
+$(document).ready(function() {
 
-app.init();
-$('.send').on('click', function() {
-  console.log("stop clicking me.");
-  // var message = {
-  //   'username': 'this.username',
-  //   'text': 'this.text',
-  //   'roomname': 'Default'
-  // };
-  // app.send(message);
-});
+  app.init();
+  $('.send').on('click', function() {
+    console.log("stop clicking me.");
+    var message = {
+      'username': document.URL.match(/username=(.*)/)[1],
+      'text': $('#input').val(),
+      'roomname': 'Default'
+    };
+    console.log($('#input').val())
+    app.send(message);
+  });
+})
 
